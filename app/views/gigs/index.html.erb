@@ -1,2 +1,46 @@
-<h1>Gigs#index</h1>
-<p>Find me in app/views/gigs/index.html.erb</p>
+<h1>Search for your gig</h1>
+
+<h1>Setlists</h1>
+
+<div class="input-field">
+    <%= form_tag(gigs_path, :method => "post", id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search gigs" %>
+    <%= button_tag "Search", :name => nil, :class => "btn"  %>
+    <% end %>
+</div>
+
+
+<%#= @gigInfo.to_json %>
+    <% if @gigInfo %>
+    <% @gigInfo.each do |list| %>
+    <ul>
+
+        <li>Artist: <%= list["artist"]["@name"]  %></li>
+        <li>Venue: <%= list["venue"]["@name"]  %></li>
+        <li>City: <%= list["venue"]["city"]["@name"]  %></li>
+        <li>State: <%= list["venue"]["city"]["@state"]  %></li>
+        <li>Latitude: <%= list["venue"]["city"]["coords"]["@lat"]  %></li>
+        <li>Longitude: <%= list["venue"]["city"]["coords"]["@long"]  %></li>
+        <li>Date: <%= list["@eventDate"]  %></li>
+        <button>Add gig</button>
+        <%# list["sets"]["set"].each do |index| %>
+
+        <% end %>
+    </ul>
+    <%end %>
+    <div class="controls">
+        <%= button_tag "Previous Page", :p => nil %>
+        <%= button_tag "Next Page", :p => nil %>
+    </div>
+    <%  %>
+
+
+
+<!-- SETLIST -->
+<!-- @setlists["setlists"]["setlist"][0]["sets"]["set"][0]["song"] loop through indexes of that array for setlist-->
+<!-- VENUE NAME -->
+<!-- @setlists["setlists"]["setlist"][0]["venue"]["@name"] returns venue name-->
+<!-- DATE OF GIG -->
+<!-- @setlists["setlists"]["setlist"][0]["@eventDate"] returns event date-->
+<!-- ARTIST -->
+<!-- @setlists["setlists"]["setlist"][0]["artist]"["@name"] returns artist-->
