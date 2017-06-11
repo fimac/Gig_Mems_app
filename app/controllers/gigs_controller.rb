@@ -7,6 +7,12 @@ class GigsController < ApplicationController
     page = 1
     url = "http://api.setlist.fm/rest/0.1/search/setlists.json?&artistName=#{search}?&p=#{page}"
     @gigInfo = HTTParty.get(url, :headers =>{'Content-Type' => 'application/json'})
+    # @totalNumResults = @gigInfo["setlists"]["@total"].to_i
+    # @numberOfPages = (@totalNumResults / 20)
+
+    # @gigInfo["setlists"]["@total"]
+    # @gigInfo["setlists"]["@itemsPerPage"]
+
   end
 
   def show

@@ -1,2 +1,41 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="flex-height">
+
+    <div class="profile box-white-darken">
+        <div class="container row border">
+
+            <h1><%= @user.first_name%> <%= @user.last_name %></h1>
+
+            <div class="fixed-size col s12 m3">
+                <%if @user.image %>
+                  <div class="round">
+                    <%= image_tag( @user.image ) %>
+                  </div>
+                <%end %>
+            </div>
+
+            <div class="fixed-size col s12 m6">
+                <ul class="collection">
+                    <li class="collection-item">
+                        <strong>Email:
+                        </strong><%= @user.email %></li>
+                    <% if @current_user && @current_user.id == @user.id  %>
+                    <% if @user.building_number && @user.street && @user.city && @user.state && @user.country %>
+                    <li class="collection-item">
+                        <strong>Address:
+                        </strong><%= @user.building_number + " " + @user.street + ", " + @user.city + ", " + @user.state + ", " + @user.country %></li>
+                    <% end %>
+                    <% end %>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="container controls">
+            <% if @current_user && @current_user.id == @user.id  %>
+            <button class="btn waves-effect waves-light z-depth-0" type="button" name="action"><%= link_to("Edit", "/users/#{@user.id}/edit") %></button>
+
+            <button class="btn waves-effect waves-light z-depth-0" type="button" name="action"><%= link_to("Delete", "/users/#{@user.id}", method: :delete, data: { confirm: "Are you sure?" }) %></button>
+            <% end %>
+        </div>
+    </div>
+</div>

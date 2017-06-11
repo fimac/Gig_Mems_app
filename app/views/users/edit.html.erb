@@ -1,2 +1,73 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<div class="flex-height">
+  <div class="box-white-darken">
+    <div class="container row">
+
+      <h1>Edit Profile</h1>
+      <% unless @user.errors.full_messages.empty? %>
+        <% @user.errors.full_messages.each do |msg| %>
+          <p>
+              <%= msg %>
+          </p>
+        <% end %>
+      <% end %>
+
+      <div class="col s12 m4">
+        <%= form_for(@user, :html => { :multipart => true }) do |f| %>
+        <p>
+            <%= f.label :first_name %>
+            <br>
+            <%= f.text_field :first_name, required: false %>
+        </p>
+
+        <p>
+            <%= f.label :last_name %>
+            <br>
+            <%= f.text_field :last_name, required: false %>
+        </p>
+
+        <p>
+            <%= f.label :email %>
+            <br>
+            <%= f.email_field :email, required: false %>
+        </p>
+
+      </div>
+
+      <div class="col s12 m4">
+        <p>
+            <%= f.label :building_number %>
+            <br>
+            <%= f.text_field :building_number, required: true %>
+        </p>
+
+        <p>
+            <%= f.label :street %>
+            <br>
+            <%= f.text_field :street, required: true %>
+        </p>
+        <p>
+            <%= f.label :city %>
+            <br>
+            <%= f.text_field :city, required: true %>
+        </p>
+        <p>
+            <%= f.label :state %>
+            <br>
+            <%= f.text_field :state, required: true %>
+        </p>
+        <p>
+            <%= f.label :country %>
+            <br>
+            <%= f.text_field :country, required: true %>
+        </p>
+      </div>
+
+      <%= f.submit %>
+        <% end %>
+
+      </div>
+
+
+    </div>
+  </div>
+</div>

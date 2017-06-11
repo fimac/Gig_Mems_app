@@ -1,2 +1,5 @@
 <h1>GigMems</h1>
-<p>Sign in/Sign up page here</p>
+<% if !@current_user %>
+
+<button class="btn waves-effect waves-light z-depth-0 light-green darken-1" type="submit" name="action"><%= link_to 'Sign Up', new_user_path %></button>
+<% end %>

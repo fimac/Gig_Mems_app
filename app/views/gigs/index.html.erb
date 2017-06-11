@@ -9,6 +9,7 @@
     <% end %>
 </div>
 
+
 <table>
   <thead>
     <tr>
@@ -22,6 +23,7 @@
   </thead>
 
   <tbody>
+    <% if @gigInfo %>
     <% @gigInfo["setlists"]["setlist"].each do |list| %>
       <tr>
         <td><%= list["artist"]["@name"] %></td>
@@ -32,14 +34,12 @@
         <td><%= link_to 'Add gig' %></td>
       </tr>
     <% end %>
+    <% end %>
+
   </tbody>
 </table>
 
-<div class="controls">
-    <%= button_tag "Previous Page", :p => nil %>
-    <%= button_tag "Next Page", :p => nil %>
-</div>
-<%  %>
+
 
 <!-- SETLIST -->
 <!-- @setlists["setlists"]["setlist"][0]["sets"]["set"][0]["song"] loop through indexes of that array for setlist-->
