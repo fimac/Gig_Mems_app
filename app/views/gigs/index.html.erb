@@ -3,44 +3,45 @@
 <h1>Setlists</h1>
 
 <div class="input-field">
-    <%= form_tag(gigs_path, :method => "post", id: "search-form") do %>
+    <%= form_tag(gigs_path, method: "get", id: "search-form") do %>
     <%= text_field_tag :search, params[:search], placeholder: "Search gigs" %>
-    <%= button_tag "Search", :name => nil, :class => "btn"  %>
+    <%= submit_tag "Search", :name => nil, :class => "btn"  %>
     <% end %>
 </div>
 
+<table>
+  <thead>
+    <tr>
+      <th>Artist</th>
+      <th>Venue</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
-<%#= @gigInfo.to_json %>
-    <% if @gigInfo %>
-    <% @gigInfo.each do |list| %>
-    <ul>
+  <tbody>
+    <% @gigInfo["setlists"]["setlist"].each do |list| %>
+      <tr>
+        <td><%= list["artist"]["@name"] %></td>
+        <td><%= list["venue"]["@name"]  %></td>
+        <td><%= list["venue"]["city"]["@name"] %></td>
+        <td><%= list["venue"]["city"]["@state"] %></td>
+        <td><%= list["@eventDate"] %></td>
+        <td><%= link_to 'Add gig' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-        <li>Artist: <%= list["artist"]["@name"]  %></li>
-        <li>Venue: <%= list["venue"]["@name"]  %></li>
-        <li>City: <%= list["venue"]["city"]["@name"]  %></li>
-        <li>State: <%= list["venue"]["city"]["@state"]  %></li>
-        <li>Latitude: <%= list["venue"]["city"]["coords"]["@lat"]  %></li>
-        <li>Longitude: <%= list["venue"]["city"]["coords"]["@long"]  %></li>
-        <li>Date: <%= list["@eventDate"]  %></li>
-        <button>Add gig</button>
-        <%# list["sets"]["set"].each do |index| %>
-
-        <% end %>
-    </ul>
-    <%end %>
-    <div class="controls">
-        <%= button_tag "Previous Page", :p => nil %>
-        <%= button_tag "Next Page", :p => nil %>
-    </div>
-    <%  %>
-
-
+<div class="controls">
+    <%= button_tag "Previous Page", :p => nil %>
+    <%= button_tag "Next Page", :p => nil %>
+</div>
+<%  %>
 
 <!-- SETLIST -->
 <!-- @setlists["setlists"]["setlist"][0]["sets"]["set"][0]["song"] loop through indexes of that array for setlist-->
-<!-- VENUE NAME -->
-<!-- @setlists["setlists"]["setlist"][0]["venue"]["@name"] returns venue name-->
-<!-- DATE OF GIG -->
-<!-- @setlists["setlists"]["setlist"][0]["@eventDate"] returns event date-->
-<!-- ARTIST -->
-<!-- @setlists["setlists"]["setlist"][0]["artist]"["@name"] returns artist-->
+<!-- list["venue"]["city"]["coords"]["@lat"] -->
+<!-- list["venue"]["city"]["coords"]["@long"] -->

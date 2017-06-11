@@ -1,22 +1,12 @@
 class GigsController < ApplicationController
 
-  def search
-    @search = params[:search]
-  end
 
+# Receiving search params from gig index.html.erb page form.
   def index
     search = params[:search]
-    page = 10
-    url = "http://api.setlist.fm/rest/0.1/search/setlists.json?&artistName=#{@search}?&p=#{page}"
-    gigInfo = HTTParty.get(url, :headers =>{'Content-Type' => 'application/json'})
-      if @gigInfo
-        @gigInfo = gigInfo["setlists"]["setlist"]
-      end
-
-# @setlists["setlists"]["setlist"]
-    # params :search
-    # params :p
-    # ?&p=2
+    page = 1
+    url = "http://api.setlist.fm/rest/0.1/search/setlists.json?&artistName=#{search}?&p=#{page}"
+    @gigInfo = HTTParty.get(url, :headers =>{'Content-Type' => 'application/json'})
   end
 
   def show
@@ -24,6 +14,7 @@ class GigsController < ApplicationController
 
   def new
   end
+
 
   def edit
   end
