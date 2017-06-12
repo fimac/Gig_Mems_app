@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 20170610043059) do
     t.text     "date"
     t.text     "songs"
     t.integer  "user_id"
+    t.text     "latitude"
+    t.text     "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -8,6 +8,8 @@ class CreateGigs < ActiveRecord::Migration[5.0]
       t.text :date
       t.text :songs
       t.integer :user_id
+      t.text :latitude
+      t.text :longitude
 
       t.timestamps
     end
