@@ -1,41 +1,31 @@
-<div class="flex-height">
+<h1><%= @user.first_name%>
+    <%= @user.last_name %></h1>
 
-    <div class="profile box-white-darken">
-        <div class="container row border">
+<ul>
+    <li>Email: <%= @user.email %></li>
+    <% if @current_user && @current_user.id == @user.id  %>
+    <% if @user.building_number && @user.street && @user.city && @user.state && @user.country %>
+    <li>Address:
+        <%= @user.building_number + " " + @user.street + ", " + @user.city + ", " + @user.state + ", " + @user.country %></li>
+    <% end %>
+    <% end %>
+</ul>
 
-            <h1><%= @user.first_name%> <%= @user.last_name %></h1>
+<h3>Gigs I have attended</h3>
+<ul>
+<% @user.gigs.each do |gig| %>
+    <li><%= link_to(gig.artist, "/gigs/#{gig.id}") %></li>
+    <li><%= gig.date %></li>
+    <li><%= gig.venue %></li>
+    <li><%= gig.city %></li>
+<% end %>
+</ul>
 
-            <div class="fixed-size col s12 m3">
-                <%if @user.image %>
-                  <div class="round">
-                    <%= image_tag( @user.image ) %>
-                  </div>
-                <%end %>
-            </div>
 
-            <div class="fixed-size col s12 m6">
-                <ul class="collection">
-                    <li class="collection-item">
-                        <strong>Email:
-                        </strong><%= @user.email %></li>
-                    <% if @current_user && @current_user.id == @user.id  %>
-                    <% if @user.building_number && @user.street && @user.city && @user.state && @user.country %>
-                    <li class="collection-item">
-                        <strong>Address:
-                        </strong><%= @user.building_number + " " + @user.street + ", " + @user.city + ", " + @user.state + ", " + @user.country %></li>
-                    <% end %>
-                    <% end %>
-                </ul>
-            </div>
+<div class="container controls">
+    <% if @current_user && @current_user.id == @user.id  %>
+    <button class="btn waves-effect waves-light z-depth-0" type="button" name="action"><%= link_to("Edit", "/users/#{@user.id}/edit") %></button>
 
-        </div>
-
-        <div class="container controls">
-            <% if @current_user && @current_user.id == @user.id  %>
-            <button class="btn waves-effect waves-light z-depth-0" type="button" name="action"><%= link_to("Edit", "/users/#{@user.id}/edit") %></button>
-
-            <button class="btn waves-effect waves-light z-depth-0" type="button" name="action"><%= link_to("Delete", "/users/#{@user.id}", method: :delete, data: { confirm: "Are you sure?" }) %></button>
-            <% end %>
-        </div>
-    </div>
+    <button class="btn waves-effect waves-light z-depth-0" type="button" name="action"><%= link_to("Delete", "/users/#{@user.id}", method: :delete, data: { confirm: "Are you sure?" }) %></button>
+    <% end %>
 </div>

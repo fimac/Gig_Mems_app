@@ -1,18 +1,7 @@
 class GigsController < ApplicationController
 
   def search
-    search = params[:search]
-    page = 1
-    # venue = "Crystal"
-    # year = "2017"
-    # city = "Portland"
-    url = "http://api.setlist.fm/rest/0.1/search/setlists.json?&artistName=#{search}?&p=#{page}"
-    @gigInfo = HTTParty.get(url, :headers =>{'Content-Type' => 'application/json'})
-    # @totalNumResults = @gigInfo["setlists"]["@total"].to_i
-    # @numberOfPages = (@totalNumResults / 20)
 
-    # @gigInfo["setlists"]["@total"]
-    # @gigInfo["setlists"]["@itemsPerPage"]
 
   end
 
@@ -26,13 +15,26 @@ class GigsController < ApplicationController
   end
 
   def new
+    search = params[:search]
+    page = 1
+    # venue = "Crystal"
+    # year = "2017"
+    # city = "Portland"
+    url = "http://api.setlist.fm/rest/0.1/search/setlists.json?&artistName=#{search}?&p=#{page}"
+    @gigInfo = HTTParty.get(url, :headers =>{'Content-Type' => 'application/json'})
+    # @totalNumResults = @gigInfo["setlists"]["@total"].to_i
+    # @numberOfPages = (@totalNumResults / 20)
+
+    # @gigInfo["setlists"]["@total"]
+    # @gigInfo["setlists"]["@itemsPerPage"]
     @gig = Gig.new
   end
 
   def create
-    gig = Gig.create( gig_params)
+    gig = Gig.create( gig_params )
     gig.user = @current_user
     gig.save
+    redirect_to "/users/#{@current_user.id}"
   end
 
   def edit
@@ -46,7 +48,7 @@ class GigsController < ApplicationController
   def destroy
     gig = Gig.find_by(id: params['id'])
     gig.destroy
-    redirect_to "/gigs"
+    redirect_to "/users/#{@current_user.id}"
   end
 
   private

@@ -12,7 +12,7 @@
             <ul>
 
             <% if @current_user %>
-            <li><a href="/items">Search</a></li>
+            <li><a href="/search">Search</a></li>
               <li><%= link_to "Log Out", "/logout", method: :delete %></li>
               <li><a href= "<%= user_path(@current_user) %>">Hi <%= @current_user.first_name %> <span id="megryan" class="test new badge light-green lighten-3" data-badge-caption="Mail"></span></a></li>
 
