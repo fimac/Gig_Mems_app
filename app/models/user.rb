@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
-
   has_many :gigs
+  belongs_to :gig, optional: true
 
 
 

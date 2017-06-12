@@ -12,6 +12,7 @@ class GigsController < ApplicationController
 
   def show
     @gig = Gig.find_by(id: params['id'])
+    @all_gigs = Gig.all
   end
 
   def new
@@ -24,10 +25,10 @@ class GigsController < ApplicationController
     @gigInfo = HTTParty.get(url, :headers =>{'Content-Type' => 'application/json'})
     # @totalNumResults = @gigInfo["setlists"]["@total"].to_i
     # @numberOfPages = (@totalNumResults / 20)
-
     # @gigInfo["setlists"]["@total"]
     # @gigInfo["setlists"]["@itemsPerPage"]
     @gig = Gig.new
+
   end
 
   def create

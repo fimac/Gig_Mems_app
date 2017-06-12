@@ -1,5 +1,6 @@
 class Gig < ApplicationRecord
   belongs_to :user, optional: true
+  has_many :users
 
 
   # Geocoder

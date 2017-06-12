@@ -24,7 +24,10 @@
         <td><%= f.text_field :state, :value => list["venue"]["city"]["@state"] %></td>
         <td><%= f.text_field :date, :value => list["@eventDate"] %></td>
         <td><%= f.submit "Add gig"%></td>
+
+
         <% end %>
+
       </tr>
 
     <% end %>
@@ -41,6 +44,6 @@
 
 
 <!-- SETLIST -->
-<!-- @setlists["setlists"]["setlist"][0]["sets"]["set"][0]["song"] loop through indexes of that array for setlist-->
+<!-- @setlists["setlists"]["setlist"][0]["sets"]["set"]["song"][0]["@name"] loop through indexes of that array for setlist-->
 <!-- list["venue"]["city"]["coords"]["@lat"] -->
 <!-- list["venue"]["city"]["coords"]["@long"] -->

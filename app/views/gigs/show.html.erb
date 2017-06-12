@@ -1,18 +1,63 @@
 <h1><%= @gig.artist %></h1>
 
-
 <ul>
 
-  <li>Venue: <%= @gig.venue %></li>
-  <li>City: <%= @gig.city %></li>
-  <li>Date: <%= @gig.date %></li>
+    <li>Venue:
+        <%= @gig.venue %></li>
+    <li>City:
+        <%= @gig.city %></li>
+    <li>Date:
+        <%= @gig.date %></li>
 
 </ul>
 
-
 <div class="controls">
-  <%= link_to("Delete Gig from my list", "/gigs/#{@gig.id}", method: :delete, data: { confirm: "Are you sure?" }) %>
+    <%= link_to("Delete Gig from my list", "/gigs/#{@gig.id}", method: :delete, data: { confirm: "Are you sure?" }) %>
 </div>
 
-<h3>You are connected to the below people because you went to this gig.</h3>
-<p>Map will show here</p>
+<h3>The below GigMem users also attended this gig.</h3>
+
+<% @markers = [] %>
+<ul>
+    <% @all_gigs.each do |gig| %>
+    <% if @gig.artist == gig.artist && @gig.venue == gig.venue && @gig.date == gig.date %>
+    <li><%= gig.user.first_name%>
+        <%= gig.user.last_name%></li>
+    <% @markers.push([gig.user.latitude, gig.user.longitude]) %>
+    <% end %>
+    <% end %>
+</ul>
+
+<div id="map"></div>
+<style>
+    #map {
+        width: 80%;
+        height: 400px;
+        background-color: grey;
+    }
+
+</style>
+
+<script>
+    function initMap() {
+        var userPos = {
+            lat: <%= @current_user.latitude %>,
+            lng: <%= @current_user.longitude %>
+        };
+        // Using markers array from above, saved this to variable
+        var locs = <%= @markers.to_json.html_safe %>
+        // Create map, rendering to the div with id of map, use userPos as the center
+        var map = new google.maps.Map(document.querySelector("#map"), {
+            zoom: 2,
+            center: userPos
+        });
+        var marker = new google.maps.Marker({position: userPos, map: map});
+        for (i = 0; i < locs.length; i++) {
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(locs[i][0], locs[i][1]),
+                map: map
+            })
+        }
+    }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbIJZ9EErSr9JKgU1aHTgjCCY_m-v78wE&callback=initMap"></script>
