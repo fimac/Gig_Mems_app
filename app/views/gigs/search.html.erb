@@ -2,7 +2,7 @@
 
 <div class="input-field">
     <%= form_tag(new_gig_path, method: "get", id: "search-form") do %>
-    <%= text_field_tag :search, params[:search], placeholder: "Search gigs" %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search by artist name" %>
     <%= submit_tag "Search", :name => nil, :class => "btn"  %>
     <% end %>
 </div>

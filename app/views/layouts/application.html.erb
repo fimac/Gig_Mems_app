@@ -1,26 +1,62 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>GigMemsApp</title>
-    <%= csrf_meta_tags %>
+    <head>
+        <title>GigMemsApp</title>
+        <%= csrf_meta_tags %>
+        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    </head>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+    <body>
+        <nav>
+            <div class="container">
+            <div class="nav-wrapper">
+                <a href="/" class="brand-logo">GigMems</a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <% if @current_user %>
+                    <li>
+                        <a href="/search">Search artists</a>
+                    </li>
+                    <li><%= link_to "Log Out", "/logout", method: :delete %></li>
+                    <li>
+                        <a href="<%= user_path(@current_user) %>">Hi
+                            <%= @current_user.first_name %></a>
+                    </li>
+                <% else %>
+                    <li>
+                        <a href="/login">Log In</a>
+                    </li>
+                    <li>
+                        <a href="/users/new">Sign Up</a>
+                    </li>
+                    <% end %>
+                </ul>
+                <ul class="side-nav" id="mobile-demo">
+                    <% if @current_user %>
+                    <li>
+                        <a href="/search">Search</a>
+                    </li>
+                    <li><%= link_to "Log Out", "/logout", method: :delete %></li>
+                    <li>
+                        <a href="<%= user_path(@current_user) %>">Hi
+                            <%= @current_user.first_name %></a>
+                    </li>
+                <% else %>
+                    <li>
+                        <a href="/login">Log In</a>
+                    </li>
+                    <li>
+                        <a href="/users/new">Sign Up</a>
+                    </li>
+                    <% end %>
+                </ul>
+              </div>
+            </div>
+        </nav>
 
-  <body>
-            <ul>
+        <%= yield %>
 
-            <% if @current_user %>
-            <li><a href="/search">Search</a></li>
-              <li><%= link_to "Log Out", "/logout", method: :delete %></li>
-              <li><a href= "<%= user_path(@current_user) %>">Hi <%= @current_user.first_name %> <span id="megryan" class="test new badge light-green lighten-3" data-badge-caption="Mail"></span></a></li>
-
-            <% else %>
-              <li><a href="/login">Log In</a></li>
-              <li><a href="/users/new">Sign Up</a></li>
-            <% end %>
-          </ul>
-    <%= yield %>
-  </body>
+    
+    </body>
 </html>

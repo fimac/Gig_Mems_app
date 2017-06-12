@@ -1,5 +1,17 @@
-<h1>GigMems</h1>
-<% if !@current_user %>
+<div class="parallax-container">
+    <div class="parallax"><%= image_tag "live_shot.jpg"%></div>
+  </div>
+  <div class="section">
+    <div class="row container">
+      <h3 class="header">Make new friends and new memories</h3>
+      
 
-<button class="btn waves-effect waves-light z-depth-0 light-green darken-1" type="submit" name="action"><%= link_to 'Sign Up', new_user_path %></button>
-<% end %>
+      <% if !@current_user %>
+
+      <button type="submit" name="action"><%= link_to 'Sign Up', new_user_path %></button>
+      <% end %>
+    </div>
+  </div>
+  <div class="parallax-container">
+    <div class="parallax"><%= image_tag "live.jpg"%></div>
+  </div>
