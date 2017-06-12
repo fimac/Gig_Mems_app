@@ -31,4 +31,44 @@
 <% end %>
 </ul>
 
-<%= @current_user.to_json %>
+<!-- Loop through all gigs, grab the lat and long and push to an empty array -->
+<% @markers = [] %>
+<% @user.gigs.each do |i|%>
+      <% @markers.push([i.latitude, i.longitude]) %>
+<% end %>
+
+<div id="map"></div>
+  <style>
+      #map {
+          width: 80%;
+          height: 400px;
+          background-color: grey;
+      }
+
+  </style>
+
+  <script>
+      function initMap() {
+          var userPos = {
+              lat: <%= @current_user.latitude %>,
+              lng: <%= @current_user.longitude %>
+          };
+          // Using markers array from above, saved this to variable
+          var locs = <%= @markers.to_json.html_safe %>
+          // Create map, rendering to the div with id of map, use userPos as the center
+          var map = new google.maps.Map(document.querySelector("#map"), {
+              zoom: 2,
+              center: userPos
+          });
+          var marker = new google.maps.Marker({position: userPos, map: map, icon: "http://www.bwwebsites.co.uk/images/nav-icons/hm-icon.png"});
+          for (i = 0; i < locs.length; i++) {
+              marker = new google.maps.Marker({
+                  position: new google.maps.LatLng(locs[i][0], locs[i][1]),
+                  map: map
+              })
+          }
+      }
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbIJZ9EErSr9JKgU1aHTgjCCY_m-v78wE&callback=initMap"></script>
+
+</div>
