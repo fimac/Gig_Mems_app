@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20170610043059) do
     t.text     "first_name"
     t.text     "last_name"
     t.text     "email"
+    t.text     "link"
     t.text     "image"
     t.text     "password_digest"
     t.text     "building_number"
