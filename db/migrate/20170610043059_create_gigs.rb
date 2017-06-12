@@ -3,6 +3,7 @@ class CreateGigs < ActiveRecord::Migration[5.0]
     create_table :gigs do |t|
       t.text :artist
       t.text :city
+      t.text :state
       t.text :venue
       t.text :date
       t.text :songs

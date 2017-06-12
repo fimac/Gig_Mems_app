@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20170610043059) do
   create_table "gigs", force: :cascade do |t|
     t.text     "artist"
     t.text     "city"
+    t.text     "state"
     t.text     "venue"
     t.text     "date"
     t.text     "songs"

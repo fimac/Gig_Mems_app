@@ -1,47 +1,15 @@
-<h1>Search for your gig</h1>
-
-<h1>Setlists</h1>
-
-<div class="input-field">
-    <%= form_tag(gigs_path, method: "get", id: "search-form") do %>
-    <%= text_field_tag :search, params[:search], placeholder: "Search gigs" %>
-    <%= submit_tag "Search", :name => nil, :class => "btn"  %>
-    <% end %>
-</div>
-
-
-<table>
-  <thead>
-    <tr>
-      <th>Artist</th>
-      <th>Venue</th>
-      <th>City</th>
-      <th>State</th>
-      <th>Date</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% if @gigInfo %>
-    <% @gigInfo["setlists"]["setlist"].each do |list| %>
-      <tr>
-        <td><%= list["artist"]["@name"] %></td>
-        <td><%= list["venue"]["@name"]  %></td>
-        <td><%= list["venue"]["city"]["@name"] %></td>
-        <td><%= list["venue"]["city"]["@state"] %></td>
-        <td><%= list["@eventDate"] %></td>
-        <td><%= link_to 'Add gig' %></td>
-      </tr>
-    <% end %>
-    <% end %>
-
-  </tbody>
-</table>
+<h1>All Gigs</h1>
 
 
 
-<!-- SETLIST -->
-<!-- @setlists["setlists"]["setlist"][0]["sets"]["set"][0]["song"] loop through indexes of that array for setlist-->
-<!-- list["venue"]["city"]["coords"]["@lat"] -->
-<!-- list["venue"]["city"]["coords"]["@long"] -->
+
+<ul>
+
+<%@all_gigs.each do |gig|%>
+  <li>
+    <%= link_to(gig.artist, "/gigs/#{gig.id}") %>
+  </li>
+
+<%end %>
+
+</ul>

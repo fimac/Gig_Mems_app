@@ -11,4 +11,6 @@ Rails.application.routes.draw do
 
   resources :users
   resources :gigs
+
+  get '/search' => 'gigs#search'
 end

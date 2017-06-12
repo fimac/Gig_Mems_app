@@ -1,2 +1,14 @@
-<h1>Gigs#show</h1>
-<p>Find me in app/views/gigs/show.html.erb</p>
+<h1><%= @gig.artist %></h1>
+
+
+<ul>
+
+  <li>Venue: <%= @gig.venue %></li>
+  <li>City: <%= @gig.city %></li>
+  <li>Date: <%= @gig.date %></li>
+
+</ul>
+
+<div class="controls">
+  <%= link_to("Delete Gig", "/gigs/#{@gig.id}", method: :delete, data: { confirm: "Are you sure?" }) %>
+</div>
