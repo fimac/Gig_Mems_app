@@ -1,30 +1,49 @@
 <h1><%= @gig.artist %></h1>
 
 <ul>
-
     <li>Venue:
         <%= @gig.venue %></li>
     <li>City:
         <%= @gig.city %></li>
     <li>Date:
         <%= @gig.date %></li>
-
 </ul>
 
 <div class="controls">
     <%= link_to("Delete Gig from my list", "/gigs/#{@gig.id}", method: :delete, data: { confirm: "Are you sure?" }) %>
 </div>
 
+<h3>Setlist for this gig</h3>
+<div class="setlist">
+    <%#= form_tag(gig_path, method: "get", id: "search-form") do %>
+    <%# text_field_tag :artist, params[:artist], :value => @gig.artist%>
+    <%# text_field_tag :venue, params[:venue], :value => @gig.venue%>
+    <%# text_field_tag :date, params[:date], :value => @gig.date%>
+    <%#= submit_tag "Get setlist", :name => nil, :class => "btn"  %>
+    <%# end %>
+</div>
+
+<% if @setlist %>
+<ul>
+<% @setlist["setlists"]["setlist"]["sets"]["set"][0]["song"].each do |song| %>
+    <li><%= song["@name"] %></li>
+<% end %>
+</ul>
+<% end %>
+
 <h3>The below GigMem users also attended this gig.</h3>
 
 <% @markers = [] %>
 <ul>
     <% @all_gigs.each do |gig| %>
-    <% if @gig.artist == gig.artist && @gig.venue == gig.venue && @gig.date == gig.date %>
-    <li><%= gig.user.first_name%>
-        <%= gig.user.last_name%></li>
-    <% @markers.push([gig.user.latitude, gig.user.longitude]) %>
-    <% end %>
+        <% if @gig.artist == gig.artist && @gig.venue == gig.venue && @gig.date == gig.date %>
+            <li><%= link_to(gig.user.username, "/users/#{gig.user.id}")%></li>
+            <!-- Geocoder - distance between current user and other users that attended -->
+            <% distance_between = Geocoder::Calculations.distance_between([gig.user.latitude,gig.user.longitude], [@current_user.latitude, @current_user.longitude]) %>
+            <li>Distance from you: <%= distance_between.round(2) %> kms</li>
+            <% distance_between = distance_between * 1.6 %>
+            <% @markers.push([gig.user.latitude, gig.user.longitude]) %>
+        <% end %>
     <% end %>
 </ul>
 
@@ -35,7 +54,6 @@
         height: 400px;
         background-color: grey;
     }
-
 </style>
 
 <script>

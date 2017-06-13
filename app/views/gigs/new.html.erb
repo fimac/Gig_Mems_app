@@ -1,6 +1,5 @@
 <h1>Search results</h1>
 
-
 <table>
   <thead>
     <tr>
@@ -11,10 +10,9 @@
       <th>Date</th>
       <th colspan="3"></th>
     </tr>
+
   </thead>
-
   <tbody>
-
     <% @gigInfo["setlists"]["setlist"].each do |list| %>
       <tr>
         <%= form_for @gig do |f| %>
@@ -24,29 +22,22 @@
         <td><%= f.text_field :state, :value => list["venue"]["city"]["@state"] %></td>
         <td><%= f.text_field :date, :value => list["@eventDate"] %></td>
         <td><%= f.submit "Add gig"%></td>
-
-
         <% end %>
-
       </tr>
-
     <% end %>
-
   </tbody>
 </table>
 
-<div class="controls">
-<button class="prev">Prev</button><button class="next">Next</button>
+<p>Total number of pages: <%= @numberOfPages %></p>
+<div class="input-field">
+    <%= form_tag(new_gig_path, method: "get") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search by artist name" %>
+    <%= text_field_tag :page, params[:page], placeholder: "Type page number"%>
+    <%= submit_tag "Search", :name => nil, :class => "btn"  %>
+    <% end %>
 </div>
-<script>
-  $(".next").click(function(){
-    console.log("next button clicked")
-  });
-  $(".prev").click(function(){
-    console.log("prev button clicked")
-  });
 
-</script>
+
 
 
 

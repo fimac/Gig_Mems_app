@@ -13,18 +13,24 @@ class GigsController < ApplicationController
   def show
     @gig = Gig.find_by(id: params['id'])
     @all_gigs = Gig.all
+    # artist = params[:artist]
+    artist = "The Strokes"
+    # venue = params[:venue]
+    venue = "Wiltern Theatre"
+    # date = params[:date]
+    date = "25-07-2016"
+    url = "http://api.setlist.fm/rest/0.1/search/setlists.json?&artistName=#{artist}?&venueName=#{venue}?&date#{date}"
+    @setlist = HTTParty.get(url, :headers =>{'Content-Type' => 'application/json'})
   end
 
   def new
     search = params[:search]
-    page = 1
-    # venue = "Crystal"
-    # year = "2017"
-    # city = "Portland"
+    page = params[:page]
+    venue = params[:venue]
     url = "http://api.setlist.fm/rest/0.1/search/setlists.json?&artistName=#{search}?&p=#{page}"
     @gigInfo = HTTParty.get(url, :headers =>{'Content-Type' => 'application/json'})
-    # @totalNumResults = @gigInfo["setlists"]["@total"].to_i
-    # @numberOfPages = (@totalNumResults / 20)
+    totalNumResults = @gigInfo["setlists"]["@total"].to_i
+    @numberOfPages = (totalNumResults / 20)
     # @gigInfo["setlists"]["@total"]
     # @gigInfo["setlists"]["@itemsPerPage"]
     @gig = Gig.new

@@ -6,11 +6,12 @@
 
 
 <ul>
-    <li>Email: <%= @user.email %></li>
+
     <% if @current_user && @current_user.id == @user.id  %>
     <% if @user.building_number && @user.street && @user.city && @user.state && @user.country %>
     <li>Address:
         <%= @user.building_number + " " + @user.street + ", " + @user.city + ", " + @user.state + ", " + @user.country %></li>
+        <li>Email: <%= @user.email %></li>
     <% end %>
     <% end %>
 </ul>
@@ -33,10 +34,13 @@
     <li><%= gig.date %></li>
     <li><%= gig.venue %></li>
     <li><%= gig.city %></li>
+    <li><%= gig.to_json %></li>
 <% end %>
 </ul>
 
-<h3>Chatrooms</h3>
+
+<h3>Chat</h3>
+<%= link_to("Let's chat", new_chatroom_path) %>
 <% @user.chatrooms.each do|i| %>
 <%= link_to(i.topic, "/chatrooms/#{i.slug}") %>
 <% end %>
@@ -72,7 +76,7 @@
               zoom: 2,
               center: userPos
           });
-          var marker = new google.maps.Marker({position: userPos, map: map, icon: "http://www.bwwebsites.co.uk/images/nav-icons/hm-icon.png"});
+          var marker = new google.maps.Marker({position: userPos, map: map, icon: "http://www.douganproperty.com/170607071741/style/icons/attr-type.png"});
           for (i = 0; i < locs.length; i++) {
               marker = new google.maps.Marker({
                   position: new google.maps.LatLng(locs[i][0], locs[i][1]),
