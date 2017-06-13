@@ -1,6 +1,7 @@
 User.destroy_all
 
 u1 = User.create({
+  username: "coquirk0",
   first_name: "Clementine",
   last_name: "O'Quirk",
   email: "coquirk0@webmd.com",
@@ -9,10 +10,12 @@ u1 = User.create({
   city: "Cedar Grove",
   state: "New Jersey",
   country: "United States",
+  image: "https://s-media-cache-ak0.pinimg.com/736x/07/c3/45/07c345d0eca11d0bc97c894751ba1b46.jpg",
   password: "chicken",
   password_confirmation: "chicken"
 })
 u2 = User.create({
+  username: "wbeharrell1",
   first_name: "Waldemar",
   last_name: "Beharrell",
   email: "wbeharrell1@angelfire.com",
@@ -21,10 +24,12 @@ u2 = User.create({
   city: "Waterloo",
   state: "Iowa",
   country: "United States",
+  image: "https://s-media-cache-ak0.pinimg.com/736x/07/c3/45/07c345d0eca11d0bc97c894751ba1b46.jpg",
   password: "chicken",
   password_confirmation: "chicken"
 })
 u3 = User.create({
+  username: "njullian2",
   first_name: "Nichole",
   last_name: "Jullian",
   email: "njullian2@berkeley.edu",
@@ -33,10 +38,12 @@ u3 = User.create({
   city: "Lindenhurst",
   state: "New York",
   country: "United States",
+  image: "https://s-media-cache-ak0.pinimg.com/736x/07/c3/45/07c345d0eca11d0bc97c894751ba1b46.jpg",
   password: "chicken",
   password_confirmation: "chicken"
 })
 u4 = User.create({
+  username: "gdake3",
   first_name: "Garner",
   last_name: "Dake",
   email: "gdake3@myspace.com",
@@ -45,10 +52,12 @@ u4 = User.create({
   city: "Kenedy",
   state: "Texas",
   country: "United States",
+  image: "https://s-media-cache-ak0.pinimg.com/736x/07/c3/45/07c345d0eca11d0bc97c894751ba1b46.jpg",
   password: "chicken",
   password_confirmation: "chicken"
 })
 u5 = User.create({
+  username: "rborel5",
   first_name: "Raina",
   last_name: "Borel",
   email: "rborel5@state.gov",
@@ -57,10 +66,12 @@ u5 = User.create({
   city: "Crestview",
   state: "FL",
   country: "United States",
+  image: "https://s-media-cache-ak0.pinimg.com/736x/07/c3/45/07c345d0eca11d0bc97c894751ba1b46.jpg",
   password: "chicken",
   password_confirmation: "chicken"
 })
 u6 = User.create({
+  username: "cgreenard4",
   first_name: "Cindy",
   last_name: "Greenard",
   email: "cgreenard4@alibaba.com",
@@ -69,10 +80,12 @@ u6 = User.create({
   city: "Columbia",
   state: "MO",
   country: "United States",
+  image: "https://s-media-cache-ak0.pinimg.com/736x/07/c3/45/07c345d0eca11d0bc97c894751ba1b46.jpg",
   password: "chicken",
   password_confirmation: "chicken"
 })
 u7 = User.create({
+  username: "tpetz6",
   first_name: "Tanner",
   last_name: "Petz",
   email: "tpetz6@4shared.com",
@@ -81,10 +94,12 @@ u7 = User.create({
   city: "St Augustine",
   state: "FL",
   country: "United States",
+  image: "https://s-media-cache-ak0.pinimg.com/736x/07/c3/45/07c345d0eca11d0bc97c894751ba1b46.jpg",
   password: "chicken",
   password_confirmation: "chicken"
 })
 u8 = User.create({
+  username: "hdemangeon7",
   first_name: "Hayward",
   last_name: "Demangeon",
   email: "hdemangeon7@chicagotribune.com",
@@ -93,10 +108,12 @@ u8 = User.create({
   city: "Sparta",
   state: "NJ",
   country: "United States",
+  image: "https://s-media-cache-ak0.pinimg.com/736x/07/c3/45/07c345d0eca11d0bc97c894751ba1b46.jpg",
   password: "chicken",
   password_confirmation: "chicken"
 })
 u9 = User.create({
+  username: "cbraun8",
   first_name: "Collin",
   last_name: "Braun",
   email: "cbraun8@wikispaces.com",
@@ -105,10 +122,12 @@ u9 = User.create({
   city: "Lakeland",
   state: "FL",
   country: "United States",
+  image: "https://s-media-cache-ak0.pinimg.com/736x/07/c3/45/07c345d0eca11d0bc97c894751ba1b46.jpg",
   password: "chicken",
   password_confirmation: "chicken"
 })
 u10 = User.create({
+  username: "vpilsbury9",
   first_name: "Vyky",
   last_name: "Pilsbury",
   email: "vpilsbury9@wsj.com",
@@ -117,10 +136,12 @@ u10 = User.create({
   city: "N Hollywood",
   state: "CA",
   country: "United States",
+  image: "https://s-media-cache-ak0.pinimg.com/736x/07/c3/45/07c345d0eca11d0bc97c894751ba1b46.jpg",
   password: "chicken",
   password_confirmation: "chicken"
 })
 u11 = User.create({
+  username: "atethcotea",
   first_name: "Ashleigh",
   last_name: "Tethcote",
   email: "atethcotea@last.fm",
@@ -129,10 +150,12 @@ u11 = User.create({
   city: "Lynwood",
   state: "CA",
   country: "United States",
+  image: "https://s-media-cache-ak0.pinimg.com/736x/07/c3/45/07c345d0eca11d0bc97c894751ba1b46.jpg",
   password: "chicken",
   password_confirmation: "chicken"
 })
 u12 = User.create({
+  username: "gskiggsb",
   first_name: "Glenn",
   last_name: "Skiggs",
   email: "gskiggsb@gov.uk",
@@ -141,10 +164,12 @@ u12 = User.create({
   city: "Des Moines",
   state: "IA",
   country: "United States",
+  image: "https://s-media-cache-ak0.pinimg.com/736x/07/c3/45/07c345d0eca11d0bc97c894751ba1b46.jpg",
   password: "chicken",
   password_confirmation: "chicken"
 })
 u13 = User.create({
+  username: "ritterc",
   first_name: "Reina",
   last_name: "Itter",
   email: "ritterc@baidu.com",
@@ -153,6 +178,7 @@ u13 = User.create({
   city: "Worthington",
   state: "OH",
   country: "United States",
+  image: "https://s-media-cache-ak0.pinimg.com/736x/07/c3/45/07c345d0eca11d0bc97c894751ba1b46.jpg",
   password: "chicken",
   password_confirmation: "chicken"
 })

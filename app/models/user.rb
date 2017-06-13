@@ -3,6 +3,10 @@ class User < ApplicationRecord
   has_many :gigs
   belongs_to :gig, optional: true
 
+  has_many :messages
+  has_many :chatrooms, through: :messages
+  validates :username, presence: true, uniqueness: true
+
 
 
   # Geocoder
