@@ -3,6 +3,7 @@ class CreateChatrooms < ActiveRecord::Migration[5.0]
     create_table :chatrooms do |t|
       t.string :topic
       t.string :slug
+      t.integer :user_id
 
       t.timestamps
     end

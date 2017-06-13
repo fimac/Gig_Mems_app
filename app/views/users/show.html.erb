@@ -36,6 +36,11 @@
 <% end %>
 </ul>
 
+<h3>Chatrooms</h3>
+<% @user.chatrooms.each do|i| %>
+<%= link_to(i.topic, "/chatrooms/#{i.slug}") %>
+<% end %>
+
 
 
 <!-- Loop through all gigs, grab the lat and long and push to an empty array -->
