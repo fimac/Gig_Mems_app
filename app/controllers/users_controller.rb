@@ -43,7 +43,7 @@ class UsersController < ApplicationController
       user.image = cloudinary["url"]
     end
     user.save
-    redirect_to "/users/#{user.id}"
+    redirect_to "/search"
   end
 
   def destroy
@@ -52,17 +52,12 @@ class UsersController < ApplicationController
     redirect_to "/users"
   end
 
-  def upvote
-    @user = User.find_by(id: params['id'])
-    @user.upvote_by @current_user
-    redirect_to :back
-    end
 
    private
 
       def user_params
 
-        params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :building_number, :street, :city, :state, :country)
+        params.require(:user).permit(:username, :first_name, :last_name, :email, :password, :password_confirmation, :building_number, :street, :city, :state, :country)
       end
 
       def check_if_logged_out

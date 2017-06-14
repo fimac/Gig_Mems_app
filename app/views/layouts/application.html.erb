@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>GigMemsApp</title>
+        <title>gigmems</title>
         <%= csrf_meta_tags %>
         <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
         <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -12,7 +12,7 @@
         <nav>
             <div class="container">
             <div class="nav-wrapper">
-                <a href="/" class="brand-logo">GigMems</a>
+                <a href="/" class="brand-logo">gigmems</a>
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <% if @current_user %>
@@ -55,9 +55,9 @@
               </div>
             </div>
         </nav>
-        <div class="container">
+
         <%= yield %>
-        </div> 
+
 
 
     </body>

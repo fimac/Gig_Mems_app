@@ -1,0 +1,7 @@
+<% if @setlist %>
+<ul>
+<% @setlist["setlists"]["setlist"]["sets"]["set"][0]["song"].each do |song| %>
+    <li><%= song["@name"] %></li>
+<% end %>
+</ul>
+<% end %>

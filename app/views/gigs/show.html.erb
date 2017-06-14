@@ -15,12 +15,12 @@
 
 <h3>Setlist for this gig</h3>
 <div class="setlist">
-    <%#= form_tag(gig_path, method: "get", id: "search-form") do %>
-    <%# text_field_tag :artist, params[:artist], :value => @gig.artist%>
-    <%# text_field_tag :venue, params[:venue], :value => @gig.venue%>
-    <%# text_field_tag :date, params[:date], :value => @gig.date%>
-    <%#= submit_tag "Get setlist", :name => nil, :class => "btn"  %>
-    <%# end %>
+    <%= form_tag(gig_path, method: "get", id: "search-form") do %>
+    <% text_field_tag :artist, params[:artist], :value => @gig.artist%>
+    <% text_field_tag :venue, params[:venue], :value => @gig.venue%>
+    <% text_field_tag :date, params[:date], :value => @gig.date%>
+    <%= submit_tag "Get setlist", :name => nil, :class => "btn"  %>
+    <% end %>
 </div>
 
 <% if @setlist %>
@@ -31,13 +31,17 @@
 </ul>
 <% end %>
 
+<!-- create page to make an ajax request -->
+
 <h3>The below GigMem users also attended this gig.</h3>
 
 <% @markers = [] %>
 <ul>
     <% @all_gigs.each do |gig| %>
-        <% if @gig.artist == gig.artist && @gig.venue == gig.venue && @gig.date == gig.date %>
+        <% if @gig.artist == gig.artist && @gig.venue == gig.venue && @gig.date == gig.date && gig.user.username != @current_user.username%>
             <li><%= link_to(gig.user.username, "/users/#{gig.user.id}")%></li>
+            <button class="btn waves-effect waves-light z-depth-0" type="button">
+            <%= link_to("Let's chat", chatrooms_path) %></button>
             <!-- Geocoder - distance between current user and other users that attended -->
             <% distance_between = Geocoder::Calculations.distance_between([gig.user.latitude,gig.user.longitude], [@current_user.latitude, @current_user.longitude]) %>
             <li>Distance from you: <%= distance_between.round(2) %> kms</li>

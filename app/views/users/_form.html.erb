@@ -8,9 +8,11 @@
     <% end %>
 
     <%= form_for @user do |f| %>
+        <%= f.text_field :username, required: false, placeholder: 'username' %>
+
         <%= f.text_field :first_name, required: true, placeholder: 'Name' %>
 
-        <%= f.text_field :last_name, required: true, placeholder: 'Name' %>
+        <%= f.text_field :last_name, required: true, placeholder: 'Last Name' %>
 
         <%= f.email_field :email, required: true, placeholder: 'Email' %>
 

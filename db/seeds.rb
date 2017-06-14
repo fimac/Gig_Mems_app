@@ -18,7 +18,7 @@ u2 = User.create({
   username: "wbeharrell1",
   first_name: "Waldemar",
   last_name: "Beharrell",
-  email: "wbeharrell1@angelfire.com",
+    email: "wbeharrell1@angelfire.com",
   building_number: "1604",
   street: "Hammond Ave",
   city: "Waterloo",
@@ -182,6 +182,34 @@ u13 = User.create({
   password: "chicken",
   password_confirmation: "chicken"
 })
+u14 = User.create({
+  username: "katiep",
+  first_name: "Katie",
+  last_name: "Peterson",
+  email: "katiep@ga.com",
+  building_number: "6969",
+  street: "Worth Galena Rd",
+  city: "Worthington",
+  state: "OH",
+  country: "United States",
+  image: "https://s-media-cache-ak0.pinimg.com/736x/07/c3/45/07c345d0eca11d0bc97c894751ba1b46.jpg",
+  password: "chicken",
+  password_confirmation: "chicken"
+})
+u15 = User.create({
+  username: "lyly",
+  first_name: "Lynda",
+  last_name: "Ly",
+  email: "lyly@ga.co",
+  building_number: "125",
+  street: "Nw Broadway Ave",
+  city: "Des Moines",
+  state: "IA",
+  country: "United States",
+  image: "https://s-media-cache-ak0.pinimg.com/736x/07/c3/45/07c345d0eca11d0bc97c894751ba1b46.jpg",
+  password: "chicken",
+  password_confirmation: "chicken"
+})
 
 p User.count
 
@@ -315,7 +343,21 @@ g16 = Gig.create({
   date: "10-06-2017",
   user_id: u6.id
   })
-
-
+g17 = Gig.create({
+  artist: "Taylor Swift",
+  city: "London",
+  state: "England",
+  venue: "Hyde Park",
+  date: "27-06-2015",
+  user_id: u15.id
+  })
+g17 = Gig.create({
+  artist: "Fleetwood Mac",
+  city: "Los Angeles",
+  state: "California",
+  venue: "Dodger Stadium",
+  date: "28-07-2016",
+  user_id: u15.id
+  })
 
   p Gig.count

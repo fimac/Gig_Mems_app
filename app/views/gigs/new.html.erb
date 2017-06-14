@@ -1,4 +1,17 @@
 <h1>Search results</h1>
+<% if @numberOfPages > 1 %>
+<p>Total number of pages: <%= @numberOfPages %></p>
+<% end %>
+<div class="input-field">
+    <%= form_tag(new_gig_path, method: "get") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search by artist name" %>
+    <% if @numberOfPages > 1 %>
+    <%= text_field_tag :page, params[:page], placeholder: "Type page number"%>
+    <% end %>
+    <%= submit_tag "Search", :name => nil, :class => "btn"  %>
+    <% end %>
+</div>
+
 
 <table>
   <thead>
@@ -22,20 +35,12 @@
         <td><%= f.text_field :state, :value => list["venue"]["city"]["@state"] %></td>
         <td><%= f.text_field :date, :value => list["@eventDate"] %></td>
         <td><%= f.submit "Add gig"%></td>
-        <% end %>
       </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
 
-<p>Total number of pages: <%= @numberOfPages %></p>
-<div class="input-field">
-    <%= form_tag(new_gig_path, method: "get") do %>
-    <%= text_field_tag :search, params[:search], placeholder: "Search by artist name" %>
-    <%= text_field_tag :page, params[:page], placeholder: "Type page number"%>
-    <%= submit_tag "Search", :name => nil, :class => "btn"  %>
-    <% end %>
-</div>
 
 
 

@@ -23,10 +23,13 @@ class GigsController < ApplicationController
     @setlist = HTTParty.get(url, :headers =>{'Content-Type' => 'application/json'})
   end
 
+
+
   def new
     search = params[:search]
     page = params[:page]
-    venue = params[:venue]
+    # city = params[:city]
+    # venue = params[:venue]
     url = "http://api.setlist.fm/rest/0.1/search/setlists.json?&artistName=#{search}?&p=#{page}"
     @gigInfo = HTTParty.get(url, :headers =>{'Content-Type' => 'application/json'})
     totalNumResults = @gigInfo["setlists"]["@total"].to_i
