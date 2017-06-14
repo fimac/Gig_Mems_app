@@ -37,6 +37,23 @@
 <% end %>
 </ul>
 
+  <% if @current_user && @current_user.id == @user.id  %>
+<h2>Mailbox</h2>
+<ul>
+ <% if @existing_chatrooms_users %>
+   <% @existing_chatrooms_users.each do |other_user| %>
+    <% if other_user != current_user %>
+      <li>
+        <%= link_to(user_chatrooms_path(current_user, :other_user => other_user.id), method: :post) do %>
+        <%= other_user.username %>
+        <% end %>
+      </li>
+     <% end %>
+   <% end %>
+  <% end %>
+</ul>
+<% end %>
+
 
 
 

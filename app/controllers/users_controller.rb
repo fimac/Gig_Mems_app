@@ -6,10 +6,13 @@ class UsersController < ApplicationController
   def index
     @all_users = User.all
     # @user = User.find_by(id: params['id'])
+
   end
 
   def show
     @user = User.find(params[:id])
+    chatrooms = @current_user.chatrooms
+    @existing_chatrooms_users = @current_user.existing_chatrooms_users
   end
 
   def new

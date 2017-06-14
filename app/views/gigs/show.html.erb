@@ -41,7 +41,11 @@
         <% if @gig.artist == gig.artist && @gig.venue == gig.venue && @gig.date == gig.date && gig.user.username != @current_user.username%>
             <li><%= link_to(gig.user.username, "/users/#{gig.user.id}")%></li>
             <button class="btn waves-effect waves-light z-depth-0" type="button">
-            <%= link_to("Let's chat", "/users/2/chatrooms/1?other_user=1") %></button>
+                <%# url = "/users" + gig.user.id + "/chatrooms/" + @current_user.id + "?other_user=" + @current_user.id  %>
+                <%= link_to(user_chatrooms_path(@current_user, :other_user => gig.user.id), method: :post) do %>
+                <%= gig.user.username %>
+                <% end %>
+            </button>
             <!-- Geocoder - distance between current user and other users that attended -->
             <% distance_between = Geocoder::Calculations.distance_between([gig.user.latitude,gig.user.longitude], [@current_user.latitude, @current_user.longitude]) %>
             <li>Distance from you: <%= distance_between.round(2) %> kms</li>
