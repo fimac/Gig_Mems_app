@@ -4,9 +4,18 @@ class User < ApplicationRecord
   belongs_to :gig, optional: true
 
   has_many :messages
-  has_many :chatrooms, through: :messages
-  validates :username, presence: true, uniqueness: true
+  has_many :subscriptions
+  has_many :chatrooms, through: :subscriptions
 
+  def existing_chatrooms_users
+		existing_chatroom_users = []
+		chatrooms.each do |chatroom|
+  		chatroom.subscriptions.each do |subscription|
+  			existing_chatroom_users << subscription.user if subscription.user != self
+  		end
+  	end
+  	existing_chatroom_users
+	end
 
 
   # Geocoder

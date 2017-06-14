@@ -10,15 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170613000339) do
+ActiveRecord::Schema.define(version: 20170614045947) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "chatrooms", force: :cascade do |t|
-    t.string   "topic"
-    t.string   "slug"
-    t.integer  "user_id"
+    t.string   "identifier"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -41,6 +39,13 @@ ActiveRecord::Schema.define(version: 20170613000339) do
     t.string   "content"
     t.integer  "user_id"
     t.integer  "chatroom_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer  "chatroom_id"
+    t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

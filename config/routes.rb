@@ -9,7 +9,10 @@ Rails.application.routes.draw do
 
   root to: "pages#home"
 
-  resources :users
+  resources :users do
+   resources :chatrooms, only: [:index, :show, :create]
+  end
+
   resources :gigs
 
   get '/search' => 'gigs#search'
@@ -17,6 +20,5 @@ Rails.application.routes.draw do
   # Serve websocket cable requests in-process
   mount ActionCable.server => '/cable'
 
-  resources :chatrooms, param: :slug
-  resources :messages
+  resources :messages, only:[:create]
 end
