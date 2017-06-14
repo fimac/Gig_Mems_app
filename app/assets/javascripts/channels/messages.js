@@ -7,10 +7,13 @@ function createMessageChannel() {
     {
       received: function(data) {
         $("#messages").removeClass("hidden");
-        return $("#messages").append(this.renderMessage(data));
+
+        var para = $("<p>");
+        $("#messages").append(para);
+        para.text(this.renderMessage(data));
       },
       renderMessage: function(data) {
-        return "<p> <b>" + data.user + ": </b>" + data.message + "</p>";
+        return data.user + ": " + data.message;
       }
     }
   );
