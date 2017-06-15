@@ -34,8 +34,6 @@
 
 <!-- create page to make an ajax request??? -->
 
-<p>No members have attended</p>
-
 <h3>gigmem users that also attended this gig</h3>
 <!-- loop through and display users that match current gig. Also push details to empty array markers, so I can loop through and create markers on the map -->
 
@@ -43,11 +41,13 @@
 <div class="gigShowPage">
     <% @all_gigs.each do |gig| %>
         <% if @gig.artist == gig.artist && @gig.venue == gig.venue && @gig.date == gig.date && gig.user.username != @current_user.username%>
-            <p><%= link_to(gig.user.username, "/users/#{gig.user.id}")%></p>
+            <p><%= gig.user.first_name %></p>
             <%= image_tag gig.user.image %>
+            <p><%= link_to("see profile", "/users/#{gig.user.id}")%></p>
                 <p><%= link_to(user_chatrooms_path(@current_user, :other_user => gig.user.id), method: :post) do %>
                 Message me
                 <% end %></p>
+
 
             <!-- Geocoder - distance between current user and other users that attended -->
             <% distance_between = Geocoder::Calculations.distance_between([gig.user.latitude,gig.user.longitude], [@current_user.latitude, @current_user.longitude]) %>
@@ -55,6 +55,7 @@
             <% @distance_between = @distance_between.round %>
             <p>Distance from you: <%= @distance_between%> kms</p>
             <% @markers.push([gig.user.latitude, gig.user.longitude, gig.user.username, gig.user.image, @distance_between, link_to(user_chatrooms_path(@current_user, :other_user => gig.user.id), method: :post)]) %>
+
         <% end %>
     <% end %>
 </div>

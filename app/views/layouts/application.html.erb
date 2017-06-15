@@ -17,14 +17,14 @@
                 <ul class="right hide-on-med-and-down">
                     <% if @current_user %>
                     <li>
-                        <a href="/search">Search artists</a>
+                        <a href="/search">Search gigs</a>
                     </li>
                     <li><%= link_to "Log Out", "/logout", method: :delete %></li>
                     <li>
                         <a href="<%= user_path(@current_user) %>">Hi
                             <%= @current_user.first_name %></a>
                     </li>
-                    
+
                 <% else %>
                     <li>
                         <a href="/login">Log In</a>
