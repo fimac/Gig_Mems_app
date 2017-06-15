@@ -18,6 +18,7 @@
       </div>
     </div>
   </div>
+<div class="main-profile-section">
 <div class="container">
 <!-- Show open chatrooms with other members -->
 <% if @current_user && @current_user.id == @user.id  %>
@@ -52,6 +53,7 @@
   </div>
 
   <div id="map"></div>
+</div>
 </div>
 
 <!-- Loop through all gigs, grab the lat and long, venue and city and push to an empty array, to display on map with hover over markers with infowindow -->

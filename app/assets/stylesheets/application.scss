@@ -25,6 +25,7 @@ body {
    min-height: 100vh;
    flex-direction: column;
    color: #063852;
+   background-color: #063852;
 }
 
 main {
@@ -34,19 +35,20 @@ main {
  h1 {
     font-size: 35px;
     text-transform: uppercase;
-    // color: #7cb342;
+    color: #d50000;
  }
 
  h2 {
-    font-size: 20px;
+    font-size: 30px;
     line-height: 25px;
     text-transform: uppercase;
-    // color: #7cb342;
+    color: #d50000;
  }
  h3 {
     font-size: 16px;
     line-height: 25px;
     text-transform: uppercase;
+    color: #d50000;
  }
 
  h4 {
@@ -54,7 +56,7 @@ main {
     line-height: 20px;
     text-transform: uppercase;
     margin: 0;
-    // color: #7cb342;
+    color: #d50000;
  }
  h5 {
    font-size: 14px;
@@ -65,11 +67,16 @@ main {
 
  p {
     font-size: 15px;
+    color: #F8F5F2;
  }
+
+ .gm-style-iw p {
+   color: #063852;
+}
 
 
  a {
-    color: #757575;
+    color: #F8F5F2;
  }
 
  a:hover {
@@ -133,6 +140,7 @@ nav ul a:hover {
    overflow: hidden;
    width: 250px;
    height: 250px;
+   margin: 0 auto;
 }
 
 .square a {
@@ -151,18 +159,40 @@ nav ul a:hover {
    text-align: center;
 }
 
-.round {
-   margin: 0 auto;
-}
-
 .background-photo {
    background-image: url("crowd-shot.jpg");
 }
 
 #map {
- width: 80%;
+ width: 60%;
  height: 400px;
  background-color: grey;
  margin: 20px auto;
 
+}
+
+.main-profile-section {
+   background-color: #063852;
+   margin: 0;
+}
+
+input {
+   color:#F8F5F2;
+}
+
+textarea {
+   color: #F8F5F2;
+   width: 30vw;
+}
+
+.circle {
+   border-radius: 50%;
+   overflow: hidden;
+   width: 50px;
+   height: 50px;
+   margin: 0 auto;
+}
+
+.intro {
+   text-align: center;
 }

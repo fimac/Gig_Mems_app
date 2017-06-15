@@ -1,14 +1,13 @@
 <div class="container">
 <h1><%= @gig.artist %></h1>
 
-<ul>
-    <li>Venue:
-        <%= @gig.venue %></li>
-    <li>City:
-        <%= @gig.city %></li>
-    <li>Date:
-        <%= @gig.date %></li>
-</ul>
+
+    <p>Venue:
+        <%= @gig.venue %></p>
+    <p>City:
+        <%= @gig.city %></p>
+    <p>Date:
+        <%= @gig.date %></p>
 
 <div class="controls">
     <%= link_to("Delete Gig from my list", "/gigs/#{@gig.id}", method: :delete, data: { confirm: "Are you sure?" }) %>
@@ -38,24 +37,23 @@
 <!-- loop through and display users that match current gig. Also push details to empty array markers, so I can loop through and create markers on the map -->
 
 <% @markers = [] %>
-<div class="gigShowPage">
+<div class="row gigShowPage">
     <% @all_gigs.each do |gig| %>
         <% if @gig.artist == gig.artist && @gig.venue == gig.venue && @gig.date == gig.date && gig.user.username != @current_user.username%>
-            <p><%= gig.user.first_name %></p>
-            <%= image_tag gig.user.image %>
-            <p><%= link_to("see profile", "/users/#{gig.user.id}")%></p>
-                <p><%= link_to(user_chatrooms_path(@current_user, :other_user => gig.user.id), method: :post) do %>
+        <div class="col s12 m4 gig">
+        <p><%= gig.user.first_name %></p>
+        <div class="circle"><%= image_tag gig.user.image %></div>
+        <p><%= link_to("see profile", "/users/#{gig.user.id}")%></p>
+        <p><%= link_to(user_chatrooms_path(@current_user, :other_user => gig.user.id), method: :post) do %>
                 Message me
                 <% end %></p>
-
-
-            <!-- Geocoder - distance between current user and other users that attended -->
-            <% distance_between = Geocoder::Calculations.distance_between([gig.user.latitude,gig.user.longitude], [@current_user.latitude, @current_user.longitude]) %>
-            <% @distance_between = distance_between * 1.6 %>
-            <% @distance_between = @distance_between.round %>
-            <p>Distance from you: <%= @distance_between%> kms</p>
-            <% @markers.push([gig.user.latitude, gig.user.longitude, gig.user.username, gig.user.image, @distance_between, link_to(user_chatrooms_path(@current_user, :other_user => gig.user.id), method: :post)]) %>
-
+        <!-- Geocoder - distance between current user and other users that attended -->
+        <% distance_between = Geocoder::Calculations.distance_between([gig.user.latitude,gig.user.longitude], [@current_user.latitude, @current_user.longitude]) %>
+        <% @distance_between = distance_between * 1.6 %>
+        <% @distance_between = @distance_between.round %>
+        <p>Distance from you: <%= @distance_between%> kms</p>
+        <% @markers.push([gig.user.latitude, gig.user.longitude, gig.user.first_name, gig.user.image, @distance_between, link_to(user_chatrooms_path(@current_user, :other_user => gig.user.id), method: :post)]) %>
+    </div>
         <% end %>
     <% end %>
 </div>
@@ -107,7 +105,7 @@
                 });
             // map.setCenter(marker.getPosition())
 
-            var content = '<div class=' + "marker" + '>' + '<h5>' + user +  '</h5>' + '<p>' + '<img src=' + '"' + image + '"' + '>' + '<p>' + user + ' is ' + distance + " kms from you" + '</p>' + message + '</div>'
+            var content = '<div class=' + "marker" + '>' + '<h5>' + user +  '</h5>' + '<p>' + '<img src=' + '"' + image + '"' + '>' + '<p>' + user + ' is ' + distance + " kms from you" + '</p>' + '</div>'
             var infowindow = new google.maps.InfoWindow()
 
             google.maps.event.addListener(marker,'mouseover', (function(marker,content,infowindow){

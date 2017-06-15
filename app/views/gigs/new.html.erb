@@ -35,7 +35,7 @@
         <td><%= f.text_field :city, :value => list["venue"]["city"]["@name"] %></td>
         <td><%= f.text_field :state, :value => list["venue"]["city"]["@state"] %></td>
         <td><%= f.text_field :date, :value => list["@eventDate"] %></td>
-        <td><%= f.submit "Add gig"%></td>
+        <td><%= f.submit "Add gig", :class => "btn"%></td>
       </tr>
       <% end %>
     <% end %>

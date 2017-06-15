@@ -11,7 +11,7 @@ u1 = User.create({
   city: "Cedar Grove",
   state: "New Jersey",
   country: "United States",
-  image: "https://s-media-cache-ak0.pinimg.com/736x/07/c3/45/07c345d0eca11d0bc97c894751ba1b46.jpg",
+  image: "http://static.celebuzz.com/uploads/2016/02/ilana-glazer-broad-city-instagram-instant-follow-friday-21816-10-560x560.jpg",
   password: "chicken",
   password_confirmation: "chicken"
 })
@@ -26,7 +26,7 @@ u2 = User.create({
   city: "Waterloo",
   state: "Iowa",
   country: "United States",
-  image: "https://s-media-cache-ak0.pinimg.com/736x/07/c3/45/07c345d0eca11d0bc97c894751ba1b46.jpg",
+  image: "https://static.theglobeandmail.ca/26a/life/health-and-fitness/health/article27982485.ece/ALTERNATES/w620/hurdle-matheson03lf2.JPG",
   password: "chicken",
   password_confirmation: "chicken"
 })
@@ -41,7 +41,7 @@ u3 = User.create({
   city: "Lindenhurst",
   state: "New York",
   country: "United States",
-  image: "https://s-media-cache-ak0.pinimg.com/736x/07/c3/45/07c345d0eca11d0bc97c894751ba1b46.jpg",
+  image: "http://www.adweek.com/galleycat/wp-content/uploads/sites/11/2016/03/Abbi-Jacobson-GalleyCat.jpg",
   password: "chicken",
   password_confirmation: "chicken"
 })
@@ -56,7 +56,7 @@ u4 = User.create({
   city: "Kenedy",
   state: "Texas",
   country: "United States",
-  image: "https://s-media-cache-ak0.pinimg.com/736x/07/c3/45/07c345d0eca11d0bc97c894751ba1b46.jpg",
+  image: "https://s-media-cache-ak0.pinimg.com/originals/da/6f/51/da6f5130d42474a797cafad77a62e618.jpg",
   password: "chicken",
   password_confirmation: "chicken"
 })
@@ -86,7 +86,7 @@ u6 = User.create({
   city: "Columbia",
   state: "MO",
   country: "United States",
-  image: "https://s-media-cache-ak0.pinimg.com/736x/07/c3/45/07c345d0eca11d0bc97c894751ba1b46.jpg",
+  image: "https://thedailyquirk.files.wordpress.com/2013/08/kristen-wiig-cali.png",
   password: "chicken",
   password_confirmation: "chicken"
 })
