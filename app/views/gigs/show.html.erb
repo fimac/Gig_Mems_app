@@ -13,25 +13,25 @@
     <%= link_to("Delete Gig from my list", "/gigs/#{@gig.id}", method: :delete, data: { confirm: "Are you sure?" }) %>
 </div>
 
-<h3>Setlist for this gig</h3>
+<!-- <h3>Setlist for this gig(hardcoded test)</h3>
 <div class="setlist">
-    <%= form_tag(gig_path, method: "get", id: "search-form") do %>
-    <% text_field_tag :artist, params[:artist], :value => @gig.artist%>
-    <% text_field_tag :venue, params[:venue], :value => @gig.venue%>
-    <% text_field_tag :date, params[:date], :value => @gig.date%>
-    <%= submit_tag "Get setlist", :name => nil, :class => "btn"  %>
-    <% end %>
+    <%#= form_tag(gig_path, method: "get", id: "search-form") do %>
+    <%# text_field_tag :artist, params[:artist], :value => @gig.artist%>
+    <%# text_field_tag :venue, params[:venue], :value => @gig.venue%>
+    <%# text_field_tag :date, params[:date], :value => @gig.date%>
+    <%#= submit_tag "Get setlist", :name => nil, :class => "btn"  %>
+    <%# end %>
 </div>
 
-<% if @setlist %>
+<%# if @setlist %>
 <ul>
-<% @setlist["setlists"]["setlist"]["sets"]["set"][0]["song"].each do |song| %>
-    <li><%= song["@name"] %></li>
-<% end %>
+<%# @setlist["setlists"]["setlist"]["sets"]["set"][0]["song"].each do |song| %>
+    <li><%#= song["@name"] %></li>
+<%# end %>
 </ul>
-<% end %>
+<%# end %> -->
 
-<!-- create page to make an ajax request -->
+<!-- create page to make an ajax request??? -->
 
 <h3>The below GigMem users also attended this gig.</h3>
 
@@ -50,7 +50,7 @@
             <% distance_between = Geocoder::Calculations.distance_between([gig.user.latitude,gig.user.longitude], [@current_user.latitude, @current_user.longitude]) %>
             <li>Distance from you: <%= distance_between.round(2) %> kms</li>
             <% distance_between = distance_between * 1.6 %>
-            <% @markers.push([gig.user.latitude, gig.user.longitude]) %>
+            <% @markers.push([gig.user.latitude, gig.user.longitude, gig.user.username]) %>
         <% end %>
     <% end %>
 </ul>
@@ -73,17 +73,40 @@
         // Using markers array from above, saved this to variable
         var locs = <%= @markers.to_json.html_safe %>
         // Create map, rendering to the div with id of map, use userPos as the center
-        var map = new google.maps.Map(document.querySelector("#map"), {
-            zoom: 2,
-            center: userPos
-        });
-        var marker = new google.maps.Marker({position: userPos, map: map});
-        for (i = 0; i < locs.length; i++) {
-            marker = new google.maps.Marker({
-                position: new google.maps.LatLng(locs[i][0], locs[i][1]),
-                map: map
-            })
+        var myOptions = {
+            center: new google.maps.LatLng(userPos),
+            zoom: 8,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.querySelector("#map"), myOptions);
+        setMarkers(map,locs)
         }
-    }
+
+        function setMarkers(map, locs){
+            var marker, i;
+            for(i = 0; i < locs.length; i++){
+                var lat = locs[i][0]
+                var long = locs[i][1]
+                var user = locs[i][2]
+
+            latlngset = new google.maps.LatLng(lat, long);
+
+            var marker = new google.maps.Marker({
+             map: map, title: user , position: latlngset
+                });
+            // map.setCenter(marker.getPosition())
+
+            var content = "Username: " + user +  '</h3>' + " Message me"
+            var infowindow = new google.maps.InfoWindow()
+
+            google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){
+        return function() {
+           infowindow.setContent(content);
+           infowindow.open(map,marker);
+                };
+            })(marker,content,infowindow));
+            }
+        };
+
 </script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbIJZ9EErSr9JKgU1aHTgjCCY_m-v78wE&callback=initMap"></script>

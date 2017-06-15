@@ -44,7 +44,7 @@ class GigsController < ApplicationController
     gig = Gig.create( gig_params )
     gig.user = @current_user
     gig.save
-    redirect_to "/users/#{@current_user.id}"
+    redirect_to "/gigs/#{gig.id}"
   end
 
   def edit

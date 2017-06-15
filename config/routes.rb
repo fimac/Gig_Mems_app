@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'notifications/index'
 
   get 'session/new'
 
@@ -23,4 +22,5 @@ Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
 
   resources :messages, only:[:create]
+  resources :notifications
 end
