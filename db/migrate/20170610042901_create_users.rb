@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.text :email
       t.text :link
       t.text :image
+      t.text :bio
       t.text :password_digest
       t.text :building_number
       t.text :street

@@ -1,45 +1,26 @@
-<div class="container">
-<h1><%= @user.first_name%>
-    <%= @user.last_name %></h1>
-<% if @user.image %>
-<div><%= image_tag @user.image %></div>
-<% end %>
 
 
-
-<ul>
-
-    <% if @current_user && @current_user.id == @user.id  %>
-    <% if @user.building_number && @user.street && @user.city && @user.state && @user.country %>
-    <li>Address:
-        <%= @user.building_number + " " + @user.street + ", " + @user.city + ", " + @user.state + ", " + @user.country %></li>
-        <li>Email: <%= @user.email %></li>
-    <% end %>
-    <% end %>
-</ul>
+  <div class="row background-photo">
+    <div class="profile col s12">
+      <h1><%= @user.first_name%> <%= @user.last_name %></h1>
+        <% if @user.image %>
+        <div class="round"><%= image_tag @user.image %></div>
+        <% end %>
+        <p><%= @user.bio %></p>
 
 <!-- Controls to edit/delete profile, only available to current user -->
-<div class="container controls">
-    <% if @current_user && @current_user.id == @user.id  %>
-    <button class="btn waves-effect waves-light z-depth-0" type="button" name="action"><%= link_to("Edit", "/users/#{@user.id}/edit") %></button>
+      <div class="container controls">
+        <% if @current_user && @current_user.id == @user.id  %>
+          <button class="btn waves-effect waves-light z-depth-0" type="button" name="action"><%= link_to("Edit my profile", "/users/#{@user.id}/edit") %></button>
 
-    <button class="btn waves-effect waves-light z-depth-0" type="button" name="action"><%= link_to("Delete my profile", "/users/#{@user.id}", method: :delete, data: { confirm: "Are you sure?" }) %></button>
-    <% end %>
-</div>
-
-
-
-<h3>Gigs I have attended</h3>
-<ul>
-<% @user.gigs.each do |gig| %>
-    <li><%= link_to(gig.artist, "/gigs/#{gig.id}") %></li>
-    <li><%= gig.date %></li>
-    <li><%= gig.venue %></li>
-    <li><%= gig.city %></li>
-<% end %>
-</ul>
-
-  <% if @current_user && @current_user.id == @user.id  %>
+          <button class="btn waves-effect waves-light z-depth-0" type="button" name="action"><%= link_to("Delete my profile", "/users/#{@user.id}", method: :delete, data: { confirm: "Are you sure?" }) %></button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<div class="container">
+<!-- Show open chatrooms with other members -->
+<% if @current_user && @current_user.id == @user.id  %>
 <h2>messages</h2>
 <ul>
  <% if @existing_chatrooms_users %>
@@ -57,24 +38,29 @@
 <% end %>
 
 
+<!-- Loop through all gigs user has added to their profile and display -->
+  <div class="row">
+    <h2>Gigs I have attended</h2>
+      <% @user.gigs.each do |gig| %>
+        <div class="col s12 m4 gig">
+          <p><strong><%= link_to(gig.artist, "/gigs/#{gig.id}") %></strong></p>
+          <p>Date <%= gig.date %></p>
+          <p>Venue <%= gig.venue %></p>
+          <p>City <%= gig.city %></p>
+        </div>
+      <% end %>
+  </div>
 
+  <div id="map"></div>
+</div>
 
 <!-- Loop through all gigs, grab the lat and long, venue and city and push to an empty array, to display on map with hover over markers with infowindow -->
-<% @markers = [] %>
-<% @user.gigs.each do |i|%>
-      <% @markers.push([i.latitude, i.longitude, i.venue, i.city, i.artist, i.date]) %>
-<% end %>
-
-<div id="map"></div>
+  <% @markers = [] %>
+  <% @user.gigs.each do |i|%>
+        <% @markers.push([i.latitude, i.longitude, i.venue, i.city, i.artist, i.date]) %>
+  <% end %>
 </div>
-  <style>
-      #map {
-          width: 80%;
-          height: 400px;
-          background-color: grey;
-      }
 
-  </style>
   <script>
       function initMap() {
           var userPos = {

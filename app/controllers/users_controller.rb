@@ -60,7 +60,7 @@ class UsersController < ApplicationController
 
       def user_params
 
-        params.require(:user).permit(:username, :first_name, :last_name, :email, :password, :password_confirmation, :building_number, :street, :city, :state, :country)
+        params.require(:user).permit(:username, :first_name, :last_name, :email, :bio, :password, :password_confirmation, :building_number, :street, :city, :state, :country)
       end
 
       def check_if_logged_out
