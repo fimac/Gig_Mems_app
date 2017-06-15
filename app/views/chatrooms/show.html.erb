@@ -1,3 +1,4 @@
+<div class="container">
 <div class="scroll">
   <h4>Chat with <%= @other_user.username %></h4>
   <% if @chatroom.messages.any? %>
@@ -12,7 +13,8 @@
 
 <%= render partial: 'messages/message_form', locals: {message: @message, chat: @chatroom}%>
 
-<p><%= link_to "Back to list of chats", user_chatrooms_path(current_user.id) %></p>
+<p><%= link_to "Back to your profile page", user_path(current_user.id) %></p>
+</div>
 
 <script>
   createMessageChannel();

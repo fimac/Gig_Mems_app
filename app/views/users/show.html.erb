@@ -1,3 +1,4 @@
+<div class="container">
 <h1><%= @user.first_name%>
     <%= @user.last_name %></h1>
 <% if @user.image %>
@@ -39,7 +40,7 @@
 </ul>
 
   <% if @current_user && @current_user.id == @user.id  %>
-<h2>Messages</h2>
+<h2>messages</h2>
 <ul>
  <% if @existing_chatrooms_users %>
    <% @existing_chatrooms_users.each do |other_user| %>
@@ -58,13 +59,14 @@
 
 
 
-<!-- Loop through all gigs, grab the lat and long and push to an empty array -->
+<!-- Loop through all gigs, grab the lat and long, venue and city and push to an empty array, to display on map with hover over markers with infowindow -->
 <% @markers = [] %>
 <% @user.gigs.each do |i|%>
-      <% @markers.push([i.latitude, i.longitude]) %>
+      <% @markers.push([i.latitude, i.longitude, i.venue, i.city, i.artist, i.date]) %>
 <% end %>
 
 <div id="map"></div>
+</div>
   <style>
       #map {
           width: 80%;
@@ -73,7 +75,6 @@
       }
 
   </style>
-
   <script>
       function initMap() {
           var userPos = {
@@ -83,19 +84,47 @@
           // Using markers array from above, saved this to variable
           var locs = <%= @markers.to_json.html_safe %>
           // Create map, rendering to the div with id of map, use userPos as the center
-          var map = new google.maps.Map(document.querySelector("#map"), {
+          var myOptions = {
+              center: new google.maps.LatLng(userPos),
               zoom: 2,
-              center: userPos
-          });
-          var marker = new google.maps.Marker({position: userPos, map: map, icon: "http://www.douganproperty.com/170607071741/style/icons/attr-type.png"});
-          for (i = 0; i < locs.length; i++) {
-              marker = new google.maps.Marker({
-                  position: new google.maps.LatLng(locs[i][0], locs[i][1]),
-                  map: map
-              })
+              mapTypeId: google.maps.MapTypeId.ROADMAP
+          };
+          var map = new google.maps.Map(document.querySelector("#map"), myOptions);
+          setMarkers(map,locs)
           }
-      }
+
+          function setMarkers(map, locs){
+              var marker, i;
+              for(i = 0; i < locs.length; i++){
+                  var lat = locs[i][0]
+                  var long = locs[i][1]
+                  var venue = locs[i][2]
+                  var city = locs[i][3]
+                  var artist = locs[i][4]
+                  var date = locs[i][5]
+
+              latlngset = new google.maps.LatLng(lat, long);
+
+              var marker = new google.maps.Marker({
+               map: map, title: venue , position: latlngset
+                  });
+              // map.setCenter(marker.getPosition())
+
+              var content = '<div class=' + "marker" + '>' + '<h5>' + artist +  '</h5>' + '<h6>' + "at " + venue + '</h6>' + '<p>' + city + '</p>' + '<p>' + date + '</p>' + '</div>'
+              var infowindow = new google.maps.InfoWindow()
+
+              google.maps.event.addListener(marker,'mouseover', (function(marker,content,infowindow){
+              return function() {
+                 infowindow.setContent(content);
+                 infowindow.open(map,marker);
+                  };
+              })(marker,content,infowindow));
+              }
+          };
+
   </script>
+
+
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbIJZ9EErSr9JKgU1aHTgjCCY_m-v78wE&callback=initMap"></script>
 
 </div>
