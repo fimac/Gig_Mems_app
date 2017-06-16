@@ -225,6 +225,21 @@ u15 = User.create({
   password: "chicken",
   password_confirmation: "chicken"
 })
+u16 = User.create({
+  username: "fimac",
+  first_name: "Fiona",
+  last_name: "McCawley",
+  email: "fi@ga.co",
+  bio: "Cat geek and.. cats, cats!!.",
+  building_number: "11",
+  street: "Gordon St",
+  city: "Marrickville",
+  state: "NSW",
+  country: "Australia",
+  image: "http://www.petmd.com/sites/default/files/scared-kitten-shutterstock_191443322.jpg",
+  password: "chicken",
+  password_confirmation: "chicken"
+})
 
 p User.count
 
@@ -415,12 +430,68 @@ g22 = Gig.create({
   user_id: u2.id
   })
 g23 = Gig.create({
-  artist: "Fleetwood Mac",
+  artist: "Queens of the Stone Age",
   city: "Los Angeles",
   state: "California",
-  venue: "Dodger Stadium",
-  date: "28-07-2016",
-  user_id: u2.id
+  venue: "Teragram Ballroom",
+  date: "10-09-2015",
+  user_id: u3.id
+  })
+g24 = Gig.create({
+  artist: "Hole",
+  city: "Sydney",
+  state: "NSW",
+  venue: "Enmore Theatre",
+  date: "21-01-1999",
+  user_id: u16.id
+  })
+g25 = Gig.create({
+  artist: "The Horrors",
+  city: "New York",
+  state: "New York",
+  venue: "Bowery Ballroom",
+  date: "17-09-2009",
+  user_id: u16.id
+  })
+g26 = Gig.create({
+  artist: "My Vitriol",
+  city: "London",
+  state: "England",
+  venue: "Brixton Academy",
+  date: "18-10-2001",
+  user_id: u16.id
+  })
+g27 = Gig.create({
+  artist: "Mogwai",
+  city: "Sydney",
+  state: "NSW",
+  venue: "Concert Hall, Sydney Opera House",
+  date: "02-03-2015",
+  user_id: u16.id
+  })
+g28 = Gig.create({
+  artist: "Explosions in the Sky",
+  city: "Sydney",
+  state: "NSW",
+  venue: "Concert Hall, Sydney Opera House",
+  date: "23-02-2017",
+  user_id: u16.id
+  })
+g29 = Gig.create({
+  artist: "Sleater-Kinney",
+  city: "Sydney",
+  state: "NSW",
+  venue: "Concert Hall, Sydney Opera House",
+  date: "06-03-2016",
+  user_id: u16.id
+  })
+g30 = Gig.create({
+  artist: "Yeah Yeah Yeahs",
+  city: "London",
+  state: "NSW",
+  venue: "Astoria Theatre",
+  date: "04-03-2003",
+  user_id: u15.id
   })
 
   p Gig.count

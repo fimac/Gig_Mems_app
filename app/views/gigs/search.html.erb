@@ -1,9 +1,11 @@
 <div class="container">
-<h1>Search for your gig</h1>
+<h3>Search for your gig</h3>
+<p>Enter the artist name and city you saw them in</p>
 
 <div class="input-field">
     <%= form_tag(new_gig_path, method: "get", id: "search-form") do %>
     <%= text_field_tag :search, params[:search], placeholder: "Search by artist name" %>
+    <%= text_field_tag :city, params[:city], required: true, placeholder: "City" %>
     <%= submit_tag "Search", :name => nil, :class => "btn"  %>
     <% end %>
 </div>

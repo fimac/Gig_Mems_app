@@ -6,6 +6,7 @@
 <div class="input-field">
     <%= form_tag(new_gig_path, method: "get") do %>
     <%= text_field_tag :search, params[:search], placeholder: "Search by artist name" %>
+    <%= text_field_tag :city, params[:city], placeholder: "city" %>
     <% if @numberOfPages > 1 %>
     <%= text_field_tag :page, params[:page], placeholder: "Type page number"%>
     <% end %>
