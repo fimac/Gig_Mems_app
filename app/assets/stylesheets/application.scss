@@ -70,6 +70,10 @@ main {
     color: #F8F5F2;
  }
 
+ li {
+   color: #d50000
+ }
+
  .gm-style-iw p {
    color: #063852;
 }
@@ -138,10 +142,11 @@ nav ul a:hover {
 .round {
    border-radius: 50%;
    overflow: hidden;
-   width: 250px;
-   height: 250px;
+   width: 300px;
+   height: 300px;
    margin: 0 auto;
 }
+
 
 .square a {
   color: #d50000;
@@ -180,6 +185,14 @@ input {
    color:#F8F5F2;
 }
 
+input.btn {
+   color: #063852;
+}
+
+input.btn:hover {
+   background-color: #d50000;
+}
+
 textarea {
    color: #F8F5F2;
    width: 30vw;
@@ -188,11 +201,19 @@ textarea {
 .circle {
    border-radius: 50%;
    overflow: hidden;
-   width: 50px;
-   height: 50px;
+   width: 80px;
+   height: 80px;
    margin: 0 auto;
 }
 
 .intro {
    text-align: center;
+}
+
+.setlist li {
+  color: #F8F5F2;
+}
+
+.gigDetails h3 h4 {
+   color: #F8F5F2;
 }

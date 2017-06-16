@@ -364,7 +364,7 @@ g17 = Gig.create({
   state: "England",
   venue: "Hyde Park",
   date: "27-06-2015",
-  user_id: u15.id
+  user_id: u14.id
   })
 g17 = Gig.create({
   artist: "Fleetwood Mac",
@@ -372,7 +372,55 @@ g17 = Gig.create({
   state: "California",
   venue: "Dodger Stadium",
   date: "28-07-2016",
+  user_id: u14.id
+  })
+g18 = Gig.create({
+  artist: "Taylor Swift",
+  city: "London",
+  state: "England",
+  venue: "Hyde Park",
+  date: "27-06-2015",
   user_id: u15.id
+  })
+g19 = Gig.create({
+  artist: "Fleetwood Mac",
+  city: "Los Angeles",
+  state: "California",
+  venue: "Dodger Stadium",
+  date: "28-07-2016",
+  user_id: u15.id
+  })
+g20 = Gig.create({
+  artist: "Taylor Swift",
+  city: "London",
+  state: "England",
+  venue: "Hyde Park",
+  date: "27-06-2015",
+  user_id: u1.id
+  })
+g21 = Gig.create({
+  artist: "Fleetwood Mac",
+  city: "Los Angeles",
+  state: "California",
+  venue: "Dodger Stadium",
+  date: "28-07-2016",
+  user_id: u1.id
+  })
+g22 = Gig.create({
+  artist: "Taylor Swift",
+  city: "London",
+  state: "England",
+  venue: "Hyde Park",
+  date: "27-06-2015",
+  user_id: u2.id
+  })
+g23 = Gig.create({
+  artist: "Fleetwood Mac",
+  city: "Los Angeles",
+  state: "California",
+  venue: "Dodger Stadium",
+  date: "28-07-2016",
+  user_id: u2.id
   })
 
   p Gig.count

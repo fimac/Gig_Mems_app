@@ -6,7 +6,7 @@
         <% if @user.image %>
         <div class="round"><%= image_tag @user.image %></div>
         <% end %>
-        <p><%= @user.bio %></p>
+        <h3><%= @user.bio %></h3>
 
 <!-- Controls to edit/delete profile, only available to current user -->
       <div class="container controls">
@@ -45,9 +45,12 @@
       <% @user.gigs.each do |gig| %>
         <div class="col s12 m4 gig">
           <p><strong><%= link_to(gig.artist, "/gigs/#{gig.id}") %></strong></p>
-          <p>Date <%= gig.date %></p>
-          <p>Venue <%= gig.venue %></p>
-          <p>City <%= gig.city %></p>
+          <p><%= gig.date %></p>
+          <p> at <%= gig.venue %></p>
+          <p><%= gig.city %></p>
+          <div class="controls">
+              <%= link_to("Delete Gig from my list", "/gigs/#{gig.id}", method: :delete, data: { confirm: "Are you sure?" }) %>
+          </div>
         </div>
       <% end %>
   </div>

@@ -1,37 +1,23 @@
 <div class="container">
-<h1><%= @gig.artist %></h1>
+  <div class="gigDetails">
+    <h2><%= @gig.artist %> </h2>
+    <h3>at <%= @gig.venue %></h3>
+    <h4>on <%= @gig.date %></h4>
+    <h4><%= @gig.city %></h4>
+  </div>
 
 
-    <p>Venue:
-        <%= @gig.venue %></p>
-    <p>City:
-        <%= @gig.city %></p>
-    <p>Date:
-        <%= @gig.date %></p>
 
-<div class="controls">
-    <%= link_to("Delete Gig from my list", "/gigs/#{@gig.id}", method: :delete, data: { confirm: "Are you sure?" }) %>
-</div>
-
-<!-- <h3>Setlist for this gig(hardcoded test) Come back to this</h3>
-<div class="setlist">
-    <%#= form_tag(gig_path, method: "get", id: "search-form") do %>
-    <%# text_field_tag :artist, params[:artist], :value => @gig.artist%>
-    <%# text_field_tag :venue, params[:venue], :value => @gig.venue%>
-    <%# text_field_tag :date, params[:date], :value => @gig.date%>
+<!-- json data that is returned is not in the same format for everyband -->
+<!-- <div class="setlist">
+    <%#= form_tag(setlist_path, method: "get") do %>
+    <%#= text_field_tag :artist, params[:artist], :value => @gig.artist%>
+    <%#= text_field_tag :venue, params[:venue], :value => @gig.venue%>
+    <%#= text_field_tag :date, params[:date], :value => @gig.date%>
     <%#= submit_tag "Get setlist", :name => nil, :class => "btn"  %>
     <%# end %>
-</div>
+</div> -->
 
-<%# if @setlist %>
-<ul>
-<%# @setlist["setlists"]["setlist"]["sets"]["set"][0]["song"].each do |song| %>
-    <li><%#= song["@name"] %></li>
-<%# end %>
-</ul>
-<%# end %> -->
-
-<!-- create page to make an ajax request??? -->
 
 <h3>gigmem users that also attended this gig</h3>
 <!-- loop through and display users that match current gig. Also push details to empty array markers, so I can loop through and create markers on the map -->
@@ -43,7 +29,7 @@
         <div class="col s12 m4 gig">
         <p><%= gig.user.first_name %></p>
         <div class="circle"><%= image_tag gig.user.image %></div>
-        <p><%= link_to("see profile", "/users/#{gig.user.id}")%></p>
+        <p><%= link_to("See profile", "/users/#{gig.user.id}")%></p>
         <p><%= link_to(user_chatrooms_path(@current_user, :other_user => gig.user.id), method: :post) do %>
                 Message me
                 <% end %></p>

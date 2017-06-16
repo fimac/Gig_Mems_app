@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   get '/search' => 'gigs#search'
 
+  get '/setlist' => 'gigs#setlist'
+
   # Serve websocket cable requests in-process
   mount ActionCable.server => '/cable'
 
