@@ -48,9 +48,11 @@
           <p><%= gig.date %></p>
           <p> at <%= gig.venue %></p>
           <p><%= gig.city %></p>
+          <% if @current_user && @current_user.id == @user.id  %>
           <div class="controls">
               <%= link_to("Delete Gig from my list", "/gigs/#{gig.id}", method: :delete, data: { confirm: "Are you sure?" }) %>
           </div>
+          <% end %>
         </div>
       <% end %>
   </div>
