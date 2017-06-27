@@ -135,9 +135,11 @@ nav ul a:hover {
 }
 
 .gig {
-  border: 1px solid rgba(160, 160, 160, 0.2);
+  border: 1px solid #d50000;
   text-align: center;
+  background-color: rgb(160, 160, 160);
 }
+
 
 .round {
    border-radius: 50%;
@@ -165,7 +167,7 @@ nav ul a:hover {
 }
 
 .background-photo {
-   background-image: url("crowd-shot.jpg");
+   background-image: url("http://i.imgur.com/EC6q6hs.jpg");
 }
 
 #map {
@@ -216,4 +218,8 @@ textarea {
 
 .gigDetails h3 h4 {
    color: #F8F5F2;
+}
+
+.panel {
+   width: 20vw;
 }

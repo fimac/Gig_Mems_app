@@ -22,7 +22,7 @@
 <div class="container">
 <!-- Show open chatrooms with other members -->
 <% if @current_user && @current_user.id == @user.id  %>
-<h2>messages</h2>
+<h2>messages received</h2>
 <ul>
  <% if @existing_chatrooms_users %>
    <% @existing_chatrooms_users.each do |other_user| %>

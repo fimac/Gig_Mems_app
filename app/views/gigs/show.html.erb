@@ -8,23 +8,12 @@
 
 
 
-<!-- json data that is returned is not in the same format for everyband -->
-<!-- <div class="setlist">
-    <%#= form_tag(setlist_path, method: "get") do %>
-    <%#= text_field_tag :artist, params[:artist], :value => @gig.artist%>
-    <%#= text_field_tag :venue, params[:venue], :value => @gig.venue%>
-    <%#= text_field_tag :date, params[:date], :value => @gig.date%>
-    <%#= submit_tag "Get setlist", :name => nil, :class => "btn"  %>
-    <%# end %>
-</div> -->
-
-
 <h3>gigmem users that also attended this gig</h3>
 <!-- loop through and display users that match current gig. Also push details to empty array markers, so I can loop through and create markers on the map -->
 
 <% @markers = [] %>
 <div class="row gigShowPage">
-    <% @all_gigs.each do |gig| %>
+    <% @all_gigs.order(@distance_between).reverse.each do |gig| %>
         <% if @gig.artist == gig.artist && @gig.venue == gig.venue && @gig.date == gig.date && gig.user.username != @current_user.username%>
         <div class="col s12 m4 gig">
         <p><%= gig.user.username %></p>
